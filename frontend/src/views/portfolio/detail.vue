@@ -1,0 +1,63 @@
+<template>
+  <span>
+    <p class="text-blue-700 text-2xl text-center font-semibold my-3">
+      PORTFOLIO DETAIL
+    </p>
+    <t-button @click.prevent="openDeleteModal" class="mx-auto my-3">
+      Delete Portfolio
+    </t-button>
+    <portfolio-detail v-if="singlePortfolio" :portfolio="singlePortfolio" class="mx-auto w-3/4 px-2 py-4" />
+    <t-modal v-model="isDeleteModalOpened" header="Delete Portfolio">
+      <confirm-modal :message="deleteMessage" @closeModal="closeDeleteModal" @onConfirmAction="deletePortfolio" />
+    </t-modal>
+  </span>
+</template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex';
+import PortfolioDetail from '../../components/portfolio/portfolio-detail.vue';
+import ConfirmModal from '../../components/modals/confirm-modal.vue';
+import * as portfolioTypes from '../../store/modules/portfolio/portfolio-types';
+
+export default {
+  name: 'PortfolioDetailPage',
+  components: {
+    PortfolioDetail,
+    ConfirmModal
+  },
+  data() {
+    return {
+      isDeleteModalOpened: false, 
+    };
+  },
+  mounted() {
+    this.getPortfolioAction(this.$route.params.id);
+  },
+  computed: {
+    ...mapGetters({
+      singlePortfolio: portfolioTypes.GET_SINGLE_PORTFOLIO
+    }),
+    deleteMessage() {
+      if (!this.singlePortfolio) {
+        return ''
+      }
+      return `Are you sure you want to delete portfolio named ${this.singlePortfolio.name}?`;
+    }
+  },
+  methods: {
+    ...mapActions({
+      getPortfolioAction: portfolioTypes.GET_SINGLE_PORTFOLIO_ACTION,
+      deletePortfolioAction: portfolioTypes.DELETE_PORTFOLIO_ACTION
+    }),
+    deletePortfolio() {
+      this.deletePortfolioAction(this.$route.params.id);
+    },
+    openDeleteModal() {
+      this.isDeleteModalOpened = true;
+    },
+    closeDeleteModal() {
+      this.isDeleteModalOpened = false;
+    },
+  },
+};
+</script>
