@@ -64,6 +64,27 @@ const routes = [
         name: 'PortfolioUpdate',
         component: () => import('../views/portfolio/update.vue'),
       },
+      // Stock urls begin here
+      {
+        path: 'stock',
+        name: 'StockList',
+        component: () => import('../views/stock/list.vue'),
+      },
+      {
+        path: 'stock/add',
+        name: 'AddStock',
+        component: () => import('../views/stock/add.vue'),
+      },
+      {
+        path: 'stock/:id',
+        name: 'StockDetail',
+        component: () => import('../views/stock/detail.vue'),
+      },
+      {
+        path: 'stock/:id/update',
+        name: 'StockUpdate',
+        component: () => import('../views/stock/update.vue'),
+      },
     ],
   },
 ];
