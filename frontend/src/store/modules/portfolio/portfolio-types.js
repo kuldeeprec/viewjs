@@ -1,0 +1,13 @@
+// Portfolio constants
+
+export const SET_SINGLE_PORTFOLIO = 'portfolio/SET_SINGLE_PORTFOLIO';
+export const SET_ALL_PORTFOLIOS = 'portfolio/SET_ALL_PORTFOLIOS';
+
+export const GET_SINGLE_PORTFOLIO = 'portfolio/GET_SINGLE_PORTFOLIO';
+export const GET_ALL_PORTFOLIOS = 'portfolio/GET_ALL_PORTFOLIOS';
+
+export const GET_SINGLE_PORTFOLIO_ACTION = 'portfolio/SET_SINGLE_PORTFOLIO_ACTION';
+export const GET_ALL_PORTFOLIOS_ACTION = 'portfolio/SET_ALL_PORTFOLIOS_ACTION';
+export const CREATE_PORTFOLIO_ACTION = 'portfolio/CREATE_PORTFOLIO_ACTION';
+export const UPDATE_PORTFOLIO_ACTION = 'portfolio/UPDATE_PORTFOLIO_ACTION';
+export const DELETE_PORTFOLIO_ACTION = 'portfolio/DELETE_PORTFOLIO_ACTION';

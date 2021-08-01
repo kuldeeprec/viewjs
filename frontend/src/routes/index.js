@@ -45,9 +45,24 @@ const routes = [
         component: () => import('../views/dashboard.vue'),
       },
       {
-        path: 'about',
-        name: 'About',
-        component: () => import('../views/about.vue'),
+        path: 'portfolio',
+        name: 'Portfolio',
+        component: () => import('../views/portfolio/list.vue'),
+      },
+      {
+        path: 'portfolio/create',
+        name: 'CreatePortfolio',
+        component: () => import('../views/portfolio/create.vue'),
+      },
+      {
+        path: 'portfolio/:id',
+        name: 'PortfolioDetail',
+        component: () => import('../views/portfolio/detail.vue'),
+      },
+      {
+        path: 'portfolio/:id/update',
+        name: 'PortfolioUpdate',
+        component: () => import('../views/portfolio/update.vue'),
       },
     ],
   },
