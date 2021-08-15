@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Portfolio from '../models/portfolioModel.js'
+import Stock from '../models/stockModel.js'
 
 // @desc    Create a new portfolio for a user
 // @route   POST /api/portfolio
@@ -38,13 +39,14 @@ const createPortfolio = asyncHandler(async (req, res) => {
 // @access  Private
 const getPortfolio = asyncHandler(async (req, res) => {
   const portfolio = await Portfolio.findById(req.params.id)
-
+  const stocks = await Stock.find({ relatedPortfolio: req.params.id })
+  
   if (portfolio) {
     res.status(200).json({
       _id: portfolio._id,
       name: portfolio.name,
       description: portfolio.description,
-      stocks: portfolio.stocks,
+      stocks: stocks,
     })
   } else {
     res.status(404)

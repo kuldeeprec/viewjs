@@ -1,7 +1,7 @@
 <template>
   <span>
     <p class="text-blue-700 text-2xl text-center font-semibold my-3">
-      PORTFOLIO DETAIL
+      {{ singlePortfolio.name }}
     </p>
     <div class="flex justify-center items-center">
       <t-button @click.prevent="openDeleteModal" class="my-3 mx-1">

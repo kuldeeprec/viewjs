@@ -19,7 +19,7 @@
         </button>
       </div>
     </div>
-    <p class="text-center text-2xl text-gray-500 underline my-3">
+    <p class="text-center text-2xl text-gray-500 underline my-5">
       {{ stock.relatedPortfolio.name }}
     </p>
     <div class="flex bg-green-500 justify-between items-center shadow-md px-3 py-2 my-3">
@@ -66,10 +66,10 @@
     </div>
     <div class="flex justify-between my-3">
       <p class="text-blue-800">
-        <span class="text-xl font-semibold text-blue-500 mr-2">Create Date</span> {{ stock.createdAt | dateToHumanShort }}
+        Created on {{ stock.createdAt | dateToHumanShort }}
       </p>
       <p class="text-blue-800">
-        <span class="text-xl font-semibold text-blue-500 mr-2">Update Date</span> {{ stock.updatedAt | dateToHumanShort }}
+        Updated on {{ stock.updatedAt | dateToHumanShort }}
       </p>
     </div>
   </div>
