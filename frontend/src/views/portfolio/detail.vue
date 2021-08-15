@@ -3,31 +3,44 @@
     <p class="text-blue-700 text-2xl text-center font-semibold my-3">
       PORTFOLIO DETAIL
     </p>
-    <t-button @click.prevent="openDeleteModal" class="mx-auto my-3">
-      Delete Portfolio
-    </t-button>
-    <portfolio-detail v-if="singlePortfolio" :portfolio="singlePortfolio" class="mx-auto w-3/4 px-2 py-4" />
+    <div class="flex justify-center items-center">
+      <t-button @click.prevent="openDeleteModal" class="my-3 mx-1">
+        Delete Portfolio
+      </t-button>
+      <t-button @click.prevent="gotToAddStock" class="my-3 mx-1">
+        Add Stock
+      </t-button>
+    </div>
+    <portfolio-detail
+      v-if="singlePortfolio"
+      :portfolio="singlePortfolio"
+      class="mx-auto w-3/4 px-2 py-4"
+    />
     <t-modal v-model="isDeleteModalOpened" header="Delete Portfolio">
-      <confirm-modal :message="deleteMessage" @closeModal="closeDeleteModal" @onConfirmAction="deletePortfolio" />
+      <confirm-modal
+        :message="deleteMessage"
+        @closeModal="closeDeleteModal"
+        @onConfirmAction="deletePortfolio"
+      />
     </t-modal>
   </span>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import PortfolioDetail from '../../components/portfolio/portfolio-detail.vue';
-import ConfirmModal from '../../components/modals/confirm-modal.vue';
-import * as portfolioTypes from '../../store/modules/portfolio/portfolio-types';
+import { mapActions, mapGetters } from "vuex";
+import PortfolioDetail from "../../components/portfolio/portfolio-detail.vue";
+import ConfirmModal from "../../components/modals/confirm-modal.vue";
+import * as portfolioTypes from "../../store/modules/portfolio/portfolio-types";
 
 export default {
-  name: 'PortfolioDetailPage',
+  name: "PortfolioDetailPage",
   components: {
     PortfolioDetail,
     ConfirmModal
   },
   data() {
     return {
-      isDeleteModalOpened: false, 
+      isDeleteModalOpened: false
     };
   },
   mounted() {
@@ -39,7 +52,7 @@ export default {
     }),
     deleteMessage() {
       if (!this.singlePortfolio) {
-        return ''
+        return "";
       }
       return `Are you sure you want to delete portfolio named ${this.singlePortfolio.name}?`;
     }
@@ -58,6 +71,9 @@ export default {
     closeDeleteModal() {
       this.isDeleteModalOpened = false;
     },
-  },
+    gotToAddStock() {
+      this.$router.push({ name: 'AddStock', query: { portfolioId: this.singlePortfolio.name } });
+    }
+  }
 };
 </script>

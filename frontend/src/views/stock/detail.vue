@@ -3,10 +3,7 @@
     <p class="text-blue-700 text-2xl text-center font-semibold my-3">
       STOCK DETAIL
     </p>
-    <t-button @click.prevent="openDeleteModal" class="mx-auto my-3">
-      Delete Stock
-    </t-button>
-    <portfolio-detail v-if="singleStock" :portfolio="singleStock" class="mx-auto w-3/4 px-2 py-4" />
+    <stock-detail v-if="singleStock" :stock="singleStock" @deleteStock="openDeleteModal" class="mx-auto w-3/4 px-2 py-4" />
     <t-modal v-model="isDeleteModalOpened" header="Delete Stock">
       <confirm-modal :message="deleteMessage" @closeModal="closeDeleteModal" @onConfirmAction="deleteStock" />
     </t-modal>
@@ -15,7 +12,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import StockDetail from '../../components/portfolio/portfolio-detail.vue';
+import StockDetail from '../../components/stock/stock-detail.vue';
 import ConfirmModal from '../../components/modals/confirm-modal.vue';
 import * as stockTypes from '../../store/modules/stock/stock-types';
 

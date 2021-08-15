@@ -101,6 +101,10 @@ export default {
     if (this.stockObj) {
       this.stock = this.stockObj;
     }
+    if (this.$route.query.portfolioId) {
+      const selectedPortfolio = this.portfolios.find((item) => item.name === this.$route.query.portfolioId);
+      this.stock.relatedPortfolio = selectedPortfolio._id;
+    }
   },
   methods: {
     submitForm() {

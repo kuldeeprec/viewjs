@@ -50,10 +50,10 @@
                   {{ portfolio.description }}
                 </td>
                 <td class="px-6 py-3 text-sm leading-5 text-gray-500 font-medium">
-                  {{ portfolio.createdAt }}
+                  {{ portfolio.createdAt | filterDate }}
                 </td>
                 <td class="px-6 py-3 text-sm leading-5 text-gray-500 font-medium">
-                  {{ portfolio.updatedAt }}
+                  {{ portfolio.updatedAt | filterDate }}
                 </td>
                 <td
                   class="px-2 py-3 flex justify-center items-center text-sm leading-5 text-gray-500 font-medium"
@@ -84,8 +84,15 @@
 </template>
 
 <script>
+import dayjs from 'dayjs';
+
 export default {
   name: "PortfolioListComponent",
+  filters: {
+    filterDate(value) {
+      return dayjs(value).format('DD/MM/YYYY');
+    }
+  },
   props: {
     portfolios: {
       type: Array,

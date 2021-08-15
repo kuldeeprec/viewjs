@@ -41,7 +41,7 @@ const addStock = asyncHandler(async (req, res) => {
 // @route   GET /api/stock/id
 // @access  Private
 const getStock = asyncHandler(async (req, res) => {
-  const stock = await Stock.findById(req.params.id)
+  const stock = await Stock.findById(req.params.id).populate('relatedPortfolio')
 
   if (stock) {
     res.status(200).json({

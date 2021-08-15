@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import { store } from '../store/store';
 import EmptyLayout from '../layouts/empty.vue';
 import DashboardLayout from '../layouts/dashboard.vue';
+import PageNotFound from '../views/error/404.vue';
 import * as authTypes from '../store/modules/auth/auth-types';
 
 Vue.use(VueRouter);
@@ -87,6 +88,7 @@ const routes = [
       },
     ],
   },
+  { path: "*", component: PageNotFound }
 ];
 
 const router = new VueRouter({
