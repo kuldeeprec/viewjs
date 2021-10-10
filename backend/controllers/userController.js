@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
@@ -76,6 +78,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       lastName: user.lastName,
       email: user.email,
       isAdmin: user.isAdmin,
+      profilePicture: user.profilePicture
     })
   } else {
     res.status(404)
@@ -134,10 +137,50 @@ const updateUserPassword = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc    Update general profile settings
+// @route   PUT /api/users/settings
+// @access  Private
+const updateSettings = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id)
+
+  if (user) {
+    const __dirname = path.resolve()
+    const fileSplit = user.profilePicture.split('http://localhost:5000/')
+    const filePath = path.join(__dirname, fileSplit[1])
+
+    // Remove previously uploaded image
+    const deleteFile = async (filePath) => {
+      try {
+          await fs.promises.unlink(filePath);
+          console.log('Successfully removed file!');
+      } catch (err) {
+          console.log(err);
+      }
+    };
+  
+    deleteFile(filePath)
+    user.profilePicture = 'http://localhost:5000/uploads/' + req.file.filename
+    const updatedUser = await user.save()
+
+    res.json({
+      _id: updatedUser._id,
+      firstName: updatedUser.firstName,
+      lastName: updatedUser.lastName,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      profilePicture: updatedUser.profilePicture
+    })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
 export {
   authUser,
   registerUser,
   getUserProfile,
   updateUserProfile,
-  updateUserPassword
+  updateUserPassword,
+  updateSettings
 }

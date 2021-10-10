@@ -18,6 +18,8 @@
           <p class="text-xl p-3 text-center text-blue-700">
             PROFILE SETTINGS
           </p>
+          <img :src="profileData.profilePicture" alt="" height="300" width="350" class="my-4 mx-auto rounded-md">
+          <change-settings-form @updateSetting="updateSettings" />
         </div>
       </div>
     </div>
@@ -31,12 +33,14 @@ import { mapGetters, mapActions } from "vuex";
 import * as authTypes from "../../store/modules/auth/auth-types";
 import ChangePasswordForm from "../../components/profile/change-password.vue";
 import ChangeProfileSettingsForm from "../../components/profile/account-settings.vue";
+import ChangeSettingsForm from "../../components/profile/general-settings.vue";
 
 export default {
   name: "About",
   components: {
     ChangePasswordForm,
-    ChangeProfileSettingsForm
+    ChangeProfileSettingsForm,
+    ChangeSettingsForm
   },
   computed: {
     ...mapGetters({
@@ -46,10 +50,14 @@ export default {
   methods: {
     ...mapActions({
       changePasswordAction: authTypes.UPDATE_USER_PASSWORD,
-      updateProfileDataAction: authTypes.UPDATE_PROFILE_SETTINGS
+      updateProfileDataAction: authTypes.UPDATE_PROFILE_SETTINGS,
+      updateGeneralSettingsAction: authTypes.UPDATE_GENERAL_SETTINGS
     }),
     updateProfileData(payload) {
       this.updateProfileDataAction(payload)
+    },
+    updateSettings(payload) {
+      this.updateGeneralSettingsAction(payload)
     }
   }
 };

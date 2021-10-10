@@ -1,62 +1,54 @@
 <template>
-  <ValidationObserver v-slot="{ handleSubmit }">
-    <form class="font-medium container py-3 px-4 text-gray-700" @submit.prevent="handleSubmit(submitForm)">
-      <div class="grid grid-cols-1 gap-x-6 gap-y-4 sm:gap-8 sm:my-4">
-        <ValidationProvider v-slot="{errors}" name="Stock Name" rules="required">
-          <t-input-group label="Stock Name" :feedback="errors[0]" :variant="errors.length > 0?'danger':''">
-            <t-input v-model="stock.name" type="text" name="Name" :variant="errors.length > 0?'danger':''" />
-          </t-input-group>
-        </ValidationProvider>
-        <ValidationProvider v-slot="{errors}" name="Description" rules="required">
-          <t-input-group label="Stock Description" :feedback="errors[0]" :variant="errors.length > 0?'danger':''">
-            <t-textarea v-model="stock.description" type="text" name="Description" :variant="errors.length > 0?'danger':''" />
-          </t-input-group>
-        </ValidationProvider>
-      </div>
-      <div class="flex justify-between mt-6">
-        <t-button type="button" variant="error" @click="$emit('cancel')">
-          Cancel
+  <form enctype="multipart/form-data" @submit.prevent="submitForm">
+    <div class="space-y-2 flex justify-center">
+      <input ref="fileinput" type="file" class="hidden" multiple @change="updateProfilePicture">
+        <div class="mx-2">
+          <p :class="errorText ? 'text-red-500': ''">
+            Update Your Profile Picture
+          </p>
+          <p class="text-red-500">
+            {{ errorText }}
+          </p>
+        </div>
+        <t-button class="flex justify-right items-center" type="button" @click.prevent="$refs.fileinput.click()">
+          <icon-component color="#fff" class="mx-2" name="upload" />
+          Upload Profile Picture
         </t-button>
-        <t-button type="submit">
-          Submit
-        </t-button>
-      </div>
-    </form>
-  </ValidationObserver>
+    </div>
+    <div class="flex justify-between mt-4">
+      <t-button type="submit">
+        Update Profile Picture
+      </t-button>
+    </div>
+  </form>
 </template>
 
 <script>
+import IconComponent from '../common/svg-icons.vue';
+
 export default {
-  name: 'SettingsForm',
-  props: {
-    userObj: {
-      type: Object,
-      required: false,
-      default: null
-    },
+  name: 'ChangeGeneralSettings',
+  components: {
+    IconComponent,
   },
   data() {
     return {
-      userData: {
-        profile_pic: '',
-        balance: 0,
-      },
+      profilePicture: null,
+      errorText: '',
     };
   },
-  mounted() {
-    if (this.userObj) {
-      this.userData = this.userObj;
-    }
-  },
   methods: {
-    submitForm() {
-      if (this.action === 'update') {
-        this.$emit('updateStock', {
-          id: this.$route.params.id,
-          data: this.stock,
-        });
+    updateProfilePicture() {
+      this.profilePicture = { ...this.$refs.fileinput.files };
+    },
+    async submitForm() {
+      if (!this.profilePicture) {
+        this.errorText = 'No file chosen';
       } else {
-        this.$emit('addStock', this.stock);
+        this.errorText = '';
+        let formData = new FormData();
+        formData.append('file', this.profilePicture[0])
+        this.$emit('updateSetting', formData);
       }
     },
   },

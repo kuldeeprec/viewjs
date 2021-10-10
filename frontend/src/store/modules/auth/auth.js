@@ -138,6 +138,22 @@ const actions = {
         console.error(err);
       });
   },
+
+  // Change the general settings of the logged in user like profile picture and add balance
+  [types.UPDATE_GENERAL_SETTINGS]: ({commit}, payload) => {
+    let url = 'users/settings';
+    interceptor.put(url, payload, { headers: { "Content-Type": "multipart/form-data" } })
+      .then((response) => {
+        commit(types.SET_PROFILE_DATA, response);
+        events.emit('add_toast', {
+          content: 'General profile settings updated successfully',
+          type: 'success',
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
 };
 
 export default {
