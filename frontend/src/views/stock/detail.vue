@@ -117,7 +117,11 @@ export default {
       }
       this.addCommentAction(payload);
     },
-    deleteComment(payload) {
+    deleteComment(commentId) {
+      const payload = {
+        id: this.$route.params.id,
+        commentId
+      }
       this.deleteCommentAction(payload);
     },
     openUpdateCommentModal(commentId) {
