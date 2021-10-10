@@ -1,5 +1,6 @@
 import axios from 'axios';
 import events from './events';
+import router from '../routes';
 
 let baseURL = process.env.VUE_APP_API_URL;
 if (!baseURL) {
@@ -39,15 +40,12 @@ httpClient.interceptors.response.use((response) => {
   events.emit('hide_loading');
   if (error.response) {
     if (error.response.status === 401 || error.response.status === 403) {
-      window.localStorage.removeItem('access_token');
-      if (window.location.pathname !== '/login') {
-        window.location.href = '/login';
-      } else {
-        events.emit('add_toast', {
-          content: getErrorMessage(error.response),
-          type: 'danger',
-        });
-      }
+      window.localStorage.removeItem('Token');
+      events.emit('add_toast', {
+        content: 'You are not authorized to access this route, try logging in',
+        type: 'danger',
+      });
+      router.push({ name: 'Login' })
     } else {
       events.emit('add_toast', {
         content: getErrorMessage(error.response),

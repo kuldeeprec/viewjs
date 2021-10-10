@@ -2,7 +2,6 @@
   <div>
     <header-component />
     <!-- This example requires Tailwind CSS v2.0+ -->
-    <hero-section message="Welcome to the home page" />
     <footer-component />
   </div>
 </template>
