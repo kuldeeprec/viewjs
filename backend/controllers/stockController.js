@@ -41,7 +41,16 @@ const addStock = asyncHandler(async (req, res) => {
 // @route   GET /api/stock/id
 // @access  Private
 const getStock = asyncHandler(async (req, res) => {
-  const stock = await Stock.findById(req.params.id).populate('relatedPortfolio')
+  const stock = await Stock.findById(req.params.id).populate([
+    {
+      path: 'comments.writtenBy',
+      model: 'User',
+      select: 'firstName lastName'
+    },
+    {
+      path: 'relatedPortfolio'
+    }
+  ])
 
   if (stock) {
     res.status(200).json({
@@ -114,10 +123,103 @@ const deleteStock = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc    Add comment to a single stock
+// @route   POST /api/stock/id/comment
+// @access  Private
+const addComment = asyncHandler(async (req, res) => {
+  const stock = await Stock.findOneAndUpdate({createdBy: req.user._id, _id: req.params.id}, { $push: { comments: {
+    writtenBy: req.user._id,
+    text: req.body.text
+  } } }, {
+    new: true,
+  })
+  .populate([
+    {
+      path: 'comments.writtenBy',
+      model: 'User',
+      select: 'firstName lastName'
+    },
+    {
+      path: 'relatedPortfolio'
+    }
+  ])
+  if (stock) {
+    res.json({
+      message: 'Comment added to stock',
+      data: stock
+    })
+  } else {
+    res.status(404)
+    throw new Error('Stock not found')
+  }
+})
+
+// @desc    Delete comment added to a stock
+// @route   POST /api/stock/id/comment/:commentId
+// @access  Private
+const deleteComment = asyncHandler(async (req, res) => {
+  const stock = await Stock.findOneAndUpdate({createdBy: req.user._id, _id: req.params.id}, 
+    { $pull: { comments: { _id: req.params.commentId } } }, {
+      new: true,
+    })
+  .populate([
+    {
+      path: 'comments.writtenBy',
+      model: 'User',
+      select: 'firstName lastName'
+    },
+    {
+      path: 'relatedPortfolio'
+    }
+  ])
+  if (stock) {
+    res.json({
+      message: 'Comment deleted',
+      data: stock
+    })
+  } else {
+    res.status(404)
+    throw new Error('Stock not found')
+  }
+})
+
+// @desc    Update a comment previously added to a stock
+// @route   PUT /api/stock/id/comment/edit/:commentId
+// @access  Private
+const updateComment = asyncHandler(async (req, res) => {
+  const stock = await Stock.findOneAndUpdate({createdBy: req.user._id, _id: req.params.id, "comments._id": req.params.commentId}, {
+    "$set": { "comments.$.text": req.body.commentText }
+  }, {
+    new: true
+  })
+  .populate([
+    {
+      path: 'comments.writtenBy',
+      model: 'User',
+      select: 'firstName lastName'
+    },
+    {
+      path: 'relatedPortfolio'
+    }
+  ])
+  if (stock) {
+    res.json({
+      message: 'Comment updated',
+      data: stock
+    })
+  } else {
+    res.status(404)
+    throw new Error('Stock not found')
+  }
+})
+
 export {
   addStock,
   getStock,
   getAllStock,
   updateStock,
   deleteStock,
+  addComment,
+  deleteComment,
+  updateComment
 }

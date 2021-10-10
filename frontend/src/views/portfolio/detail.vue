@@ -1,15 +1,17 @@
 <template>
   <span>
-    <p class="text-blue-700 text-2xl text-center font-semibold my-3">
-      {{ singlePortfolio.name }}
-    </p>
-    <div class="flex justify-center items-center">
-      <t-button @click.prevent="openDeleteModal" class="my-3 mx-1">
-        Delete Portfolio
-      </t-button>
-      <t-button @click.prevent="gotToAddStock" class="my-3 mx-1">
-        Add Stock
-      </t-button>
+    <div v-if="singlePortfolio" class="w-1/2 mx-auto flex justify-between">
+      <p class="text-blue-700 text-2xl text-center font-semibold my-3">
+        {{ singlePortfolio.name }}
+      </p>
+      <div class="flex justify-center items-center">
+        <t-button @click.prevent="openDeleteModal" class="my-3 mx-1">
+          Delete Portfolio
+        </t-button>
+        <t-button @click.prevent="gotToAddStock" class="my-3 mx-1">
+          Add Stock
+        </t-button>
+      </div>
     </div>
     <portfolio-detail
       v-if="singlePortfolio"
@@ -72,7 +74,7 @@ export default {
       this.isDeleteModalOpened = false;
     },
     gotToAddStock() {
-      this.$router.push({ name: 'AddStock', query: { portfolioId: this.singlePortfolio.name } });
+      this.$router.push({ name: "AddStock", query: { portfolioId: this.singlePortfolio.name } });
     }
   }
 };

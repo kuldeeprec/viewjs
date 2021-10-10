@@ -89,7 +89,6 @@ const actions = {
 
   // Delete a stock action
   [types.DELETE_STOCK_ACTION]: ({commit}, id) => {
-    console.log('ID is ', id);
     let url = `stock/delete/${id}`;
     interceptor.delete(url)
       .then((response) => {
@@ -99,6 +98,60 @@ const actions = {
             type: 'success',
           });
           router.push({ name: 'StockList' });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+  // Add a stock comment action
+  [types.ADD_COMMENT_ACTION]: ({commit}, payload) => {
+    let url = `stock/${payload.id}/comment`;
+    interceptor.post(url, payload.data)
+      .then((response) => {
+        if (response) {
+          commit(types.SET_SINGLE_STOCK, response.data);
+          events.emit('add_toast', {
+            content: 'Comment added to stock',
+            type: 'success',
+          });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+  // Delete a stock comment action
+  [types.DELETE_COMMENT_ACTION]: ({commit}, payload) => {
+    let url = `stock/${payload.id}/comment/${payload.commentId}`;
+    interceptor.delete(url)
+      .then((response) => {
+        if (response) {
+          commit(types.SET_SINGLE_STOCK, response.data);
+          events.emit('add_toast', {
+            content: 'Comment deleted from stock',
+            type: 'success',
+          });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+  // Update a stock comment action
+  [types.UPDATE_COMMENT_ACTION]: ({commit}, payload) => {
+    let url = `stock/${payload.id}/comment/edit/${payload.commentId}`;
+    interceptor.put(url, { commentText: payload.text })
+      .then((response) => {
+        if (response) {
+          commit(types.SET_SINGLE_STOCK, response.data);
+          events.emit('add_toast', {
+            content: 'Comment updated from stock',
+            type: 'success',
+          });
         }
       })
       .catch((err) => {

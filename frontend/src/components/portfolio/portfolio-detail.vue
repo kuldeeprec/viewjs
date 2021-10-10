@@ -10,6 +10,7 @@
 <script>
 import StockList from '../stock/stock-list.vue';
 
+
 export default {
   name: "PortfolioDetailComponent",
   props: {
@@ -20,7 +21,7 @@ export default {
     }
   },
   components: {
-    StockList
+    StockList,
   }
 };
 </script>

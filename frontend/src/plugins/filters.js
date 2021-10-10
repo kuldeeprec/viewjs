@@ -13,3 +13,8 @@ Vue.filter('toUpperCase', (value) => {
   if (!value) return '';
   return value.toUpperCase();
 });
+
+Vue.filter('getFullName', (value) => {
+  if (!value) return '';
+  return value.firstName + ' ' + value.lastName;
+});

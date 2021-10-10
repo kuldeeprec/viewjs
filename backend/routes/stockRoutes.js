@@ -5,7 +5,10 @@ import {
   getStock,
   getAllStock,
   updateStock,
-  deleteStock
+  deleteStock,
+  addComment,
+  deleteComment,
+  updateComment
 } from '../controllers/stockController.js'
 import { protect } from '../middleware/authMiddleware.js'
 
@@ -25,5 +28,16 @@ router
   .route('/delete/:id')
   .delete(protect, deleteStock)
 
+router
+  .route('/:id/comment')
+  .post(protect, addComment)
+
+router
+  .route('/:id/comment/:commentId')
+  .delete(protect, deleteComment)
+
+router
+  .route('/:id/comment/edit/:commentId')
+  .put(protect, updateComment)
 
 export default router

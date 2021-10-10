@@ -90,7 +90,6 @@ const actions = {
 
   // Delete a portfolio action
   [types.DELETE_PORTFOLIO_ACTION]: ({commit}, id) => {
-    console.log('ID is ', id);
     let url = `portfolio/delete/${id}`;
     interceptor.delete(url)
       .then((response) => {

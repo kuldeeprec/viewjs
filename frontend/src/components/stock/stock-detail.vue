@@ -22,7 +22,7 @@
     <p class="text-center text-2xl text-gray-500 underline my-5">
       {{ stock.relatedPortfolio.name }}
     </p>
-    <div class="flex bg-green-500 justify-between items-center shadow-md px-3 py-2 my-3">
+    <div class="flex bg-green-500 justify-between items-center shadow-md px-3 py-4 my-3">
       <div class="w-1/5">
         <p class="text-2xl text-center font-semibold text-gray-100">
           ACTION
@@ -76,6 +76,7 @@
 </template>
 
 <script>
+
 export default {
   name: "StockDetailComponent",
   props: {
