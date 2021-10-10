@@ -1,5 +1,6 @@
 <template>
   <span>
+    <bread-crumb-component :links="breadcrumbs" />
     <p class="text-blue-700 text-2xl text-center font-semibold my-3">
       STOCK DETAIL
     </p>
@@ -10,9 +11,24 @@
         @deleteStock="openDeleteModal"
         class="mx-auto w-3/4 px-2 py-4"
       />
-      <comment-container class="mx-auto w-3/4 px-2 py-4" @addComment="addComment" />
+      <comment-container
+        class="mx-auto w-3/4 px-2 py-4"
+        @addComment="addComment"
+      />
       <div class="mx-auto w-3/4 py-4 my-3">
-        <div v-for="comment in singleStock.comments" :key="comment._id" class="flex bg-gray-200 p-4 my-3 shadow-md justify-between items-center">
+        <div
+          v-for="comment in singleStock.comments"
+          :key="comment._id"
+          class="
+            flex
+            bg-gray-200
+            p-4
+            my-3
+            shadow-md
+            justify-between
+            items-center
+          "
+        >
           <p>
             {{ comment.text }}
           </p>
@@ -24,10 +40,16 @@
               {{ comment.date | dateToHumanShort }}
             </p>
             <div class="flex justify-center items-center my-2">
-              <span class="cursor-pointer" @click.prevent="deleteComment(comment._id)">
-                <icon-component name="trash" color="red" class="mr-2 " />
+              <span
+                class="cursor-pointer"
+                @click.prevent="deleteComment(comment._id)"
+              >
+                <icon-component name="trash" color="red" class="mr-2" />
               </span>
-              <span class="cursor-pointer" @click.prevent="openUpdateCommentModal(comment._id)">
+              <span
+                class="cursor-pointer"
+                @click.prevent="openUpdateCommentModal(comment._id)"
+              >
                 <icon-component name="pencil" color="red" class="mr-2" />
               </span>
             </div>
@@ -54,42 +76,63 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
 import StockDetail from "../../components/stock/stock-detail.vue";
 import ConfirmModal from "../../components/modals/confirm-modal.vue";
 import UpdateCommentModal from "../../components/modals/update-comment.vue";
 import * as stockTypes from "../../store/modules/stock/stock-types";
 import CommentContainer from "../../components/stock/comment.vue";
-import IconComponent from '../../components/common/svg-icons.vue';
+import IconComponent from "../../components/common/svg-icons.vue";
 
 export default {
   name: "StockDetailPage",
   components: {
     StockDetail,
+    BreadCrumbComponent,
     ConfirmModal,
     CommentContainer,
     UpdateCommentModal,
-    IconComponent
+    IconComponent,
   },
   data() {
     return {
       isDeleteModalOpened: false,
       isEditModalOpened: false,
       selectedComment: {},
+      breadcrumbs: [],
     };
   },
   mounted() {
     this.getStockAction(this.$route.params.id);
   },
+  beforeUpdate() {
+    if (this.singleStock) {
+      this.breadcrumbs = [];
+      this.breadcrumbs.push(
+        {
+          title: "Stocks",
+          to: { name: "StockList" },
+        },
+        {
+          title: "Details",
+        },
+        {
+          title: this.singleStock.name,
+          to: { name: "StockDetail", params: { id: this.singleStock._id } },
+        }
+      );
+    }
+  },
   computed: {
     ...mapGetters({
-      singleStock: stockTypes.GET_SINGLE_STOCK
+      singleStock: stockTypes.GET_SINGLE_STOCK,
     }),
     deleteMessage() {
       if (!this.singleStock) {
         return "";
       }
       return `Are you sure you want to delete stock named " ${this.singleStock.name} "?`;
-    }
+    },
   },
   methods: {
     ...mapActions({
@@ -97,7 +140,7 @@ export default {
       deleteStockAction: stockTypes.DELETE_STOCK_ACTION,
       addCommentAction: stockTypes.ADD_COMMENT_ACTION,
       updateCommentAction: stockTypes.UPDATE_COMMENT_ACTION,
-      deleteCommentAction: stockTypes.DELETE_COMMENT_ACTION
+      deleteCommentAction: stockTypes.DELETE_COMMENT_ACTION,
     }),
     deleteStock() {
       this.deleteStockAction(this.$route.params.id);
@@ -112,21 +155,23 @@ export default {
       const payload = {
         id: this.$route.params.id,
         data: {
-          text: commentData
-        }
-      }
+          text: commentData,
+        },
+      };
       this.addCommentAction(payload);
     },
     deleteComment(commentId) {
       const payload = {
         id: this.$route.params.id,
-        commentId
-      }
+        commentId,
+      };
       this.deleteCommentAction(payload);
     },
     openUpdateCommentModal(commentId) {
       this.isEditModalOpened = true;
-      this.selectedComment = this.singleStock.comments.find((item) => item._id === commentId);
+      this.selectedComment = this.singleStock.comments.find(
+        (item) => item._id === commentId
+      );
     },
     closeUpdateCommentModal(commentId) {
       this.isEditModalOpened = false;
@@ -135,7 +180,7 @@ export default {
     updateComment(payload) {
       this.updateCommentAction(payload);
       this.closeUpdateCommentModal();
-    }
-  }
+    },
+  },
 };
 </script>

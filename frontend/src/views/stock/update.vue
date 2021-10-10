@@ -1,5 +1,6 @@
 <template>
   <span>
+    <bread-crumb-component :links="breadcrumbs" />
     <p class="text-center my-2 text-3xl font-semibold text-blue-700">
       UPDATE STOCK
     </p>
@@ -11,6 +12,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
 import * as stockTypes from '../../store/modules/stock/stock-types';
 import * as portfolioTypes from '../../store/modules/portfolio/portfolio-types';
 import UpdateStockForm from '../../components/stock/stock-form.vue'
@@ -19,15 +21,37 @@ export default {
   name: 'CreatePortfolioPage',
   components: {
     UpdateStockForm,
+    BreadCrumbComponent
   },
   data() {
     return {
-      
+      breadcrumbs: [],
     };
   },
   mounted() {
     this.getSingleStockAction(this.$route.params.id);
     this.getAllPortfolio();
+  },
+  beforeUpdate() {
+    if (this.singleStock) {
+      this.breadcrumbs = [];
+      this.breadcrumbs.push(
+        {
+          title: 'Stocks',
+          to: { name: 'StockList' },
+        },
+        {
+          title: 'Update'
+        },
+        {
+          title: this.singleStock.name,
+          to: {
+            name: "StockUpdate",
+            params: { id: this.singleStock._id },
+          },
+        }
+      );
+    }
   },
   computed: {
     ...mapGetters({

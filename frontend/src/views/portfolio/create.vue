@@ -26,6 +26,10 @@ export default {
     return {
       breadcrumbs: [
         {
+          title: 'Portfolio',
+          to: { name: 'Portfolio' },
+        },
+        {
           title: 'Add Portfolio',
           to: { name: 'CreatePortfolio' },
         },

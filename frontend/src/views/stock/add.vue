@@ -1,5 +1,6 @@
 <template>
   <span>
+    <bread-crumb-component :links="breadcrumbs" />
     <p class="text-center my-2 text-3xl font-semibold text-blue-700">
       ADD STOCK
     </p>
@@ -16,6 +17,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
 import * as stockTypes from "../../store/modules/stock/stock-types";
 import * as portfolioTypes from "../../store/modules/portfolio/portfolio-types";
 import AddStockForm from "../../components/stock/stock-form.vue";
@@ -25,9 +27,21 @@ export default {
   name: "CreatePortfolioPage",
   components: {
     AddStockForm,
+    BreadCrumbComponent
   },
   data() {
-    return {};
+    return {
+      breadcrumbs: [
+        {
+          title: 'Stocks',
+          to: { name: 'StockList' },
+        },
+        {
+          title: 'Add Stock',
+          to: { name: 'AddStock' },
+        },
+      ],
+    };
   },
   mounted() {
     this.getAllPortfolio();

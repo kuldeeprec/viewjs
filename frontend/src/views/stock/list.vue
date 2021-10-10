@@ -1,5 +1,6 @@
 <template>
   <span>
+    <bread-crumb-component :links="breadcrumbs" />
     <div class="flex justify-center items-center py-2 px-4">
       <p class="text-blue-700 text-2xl text-center font-semibold my-3">
       STOCKS
@@ -14,6 +15,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
 import StockList from '../../components/stock/stock-list.vue';
 import IconComponent from '../../components/common/svg-icons.vue';
 import * as stockTypes from '../../store/modules/stock/stock-types';
@@ -23,10 +25,16 @@ export default {
   components: {
     StockList,
     IconComponent,
+    BreadCrumbComponent
   },
   data() {
     return {
-      
+      breadcrumbs: [
+        {
+          title: 'Stocks',
+          to: { name: 'StockList' },
+        },
+      ],
     };
   },
   mounted() {
