@@ -1,5 +1,6 @@
 <template>
   <span>
+    <bread-crumb-component :links="breadcrumbs" />
     <div v-if="profileData" class="bg-white shadow-sm rounded-md">
       <div class="w-4/5 mx-auto px-4 py-2 bg-blue-100">
         <div>
@@ -31,6 +32,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import * as authTypes from "../../store/modules/auth/auth-types";
+import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
 import ChangePasswordForm from "../../components/profile/change-password.vue";
 import ChangeProfileSettingsForm from "../../components/profile/account-settings.vue";
 import ChangeSettingsForm from "../../components/profile/general-settings.vue";
@@ -40,7 +42,18 @@ export default {
   components: {
     ChangePasswordForm,
     ChangeProfileSettingsForm,
-    ChangeSettingsForm
+    ChangeSettingsForm,
+    BreadCrumbComponent
+  },
+  data() {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Settings',
+          to: { name: 'Settings' },
+        },
+      ],
+    }
   },
   computed: {
     ...mapGetters({

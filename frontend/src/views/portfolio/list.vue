@@ -1,6 +1,7 @@
 <template>
   <span>
-    <div class="flex justify-center items-center py-2 px-4">
+    <bread-crumb-component :links="breadcrumbs" />
+    <div class="flex justify-center items-center py-2 px-4 bg-green-100">
       <p class="text-blue-700 text-2xl text-center font-semibold my-3">
         PORTFOLIOS
       </p>
@@ -17,6 +18,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
 import PortfolioList from "../../components/portfolio/portfolio-list.vue";
 import IconComponent from "../../components/common/svg-icons.vue";
 import * as portfolioTypes from "../../store/modules/portfolio/portfolio-types";
@@ -25,17 +27,24 @@ export default {
   name: "PortfolioListPage",
   components: {
     PortfolioList,
-    IconComponent
+    IconComponent,
+    BreadCrumbComponent
   },
   metaInfo: {
-    // if no subcomponents specify a metaInfo.title, this title will be used
     title: "Stock List",
     meta: [
      { name: 'description', content: "Description of all stocks which I have" }
     ]
   },
   data() {
-    return {};
+    return {
+      breadcrumbs: [
+        {
+          title: 'Portfolio',
+          to: { name: 'Portfolio' },
+        },
+      ],
+    };
   },
   mounted() {
     this.allPortfoliosAction();

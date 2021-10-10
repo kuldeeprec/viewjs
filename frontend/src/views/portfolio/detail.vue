@@ -42,7 +42,13 @@ export default {
   },
   data() {
     return {
-      isDeleteModalOpened: false
+      isDeleteModalOpened: false,
+      breadcrumbs: [
+        {
+          title: 'Settings',
+          to: { name: 'Settings' },
+        },
+      ],
     };
   },
   mounted() {
