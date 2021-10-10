@@ -106,6 +106,38 @@ const actions = {
         console.error(err);
       });
   },
+
+  // Change the password of the logged in user
+  [types.UPDATE_USER_PASSWORD]: ({commit}, payload) => {
+    let url = 'users/change-password';
+    interceptor.put(url, payload)
+      .then((response) => {
+        commit(types.SET_PROFILE_DATA, response);
+        events.emit('add_toast', {
+          content: 'Password changed successfully',
+          type: 'success',
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+  // Change the password of the logged in user
+  [types.UPDATE_PROFILE_SETTINGS]: ({commit}, payload) => {
+    let url = 'users/profile';
+    interceptor.put(url, payload)
+      .then((response) => {
+        commit(types.SET_PROFILE_DATA, response);
+        events.emit('add_toast', {
+          content: 'Profile data updated successfully',
+          type: 'success',
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
 };
 
 export default {

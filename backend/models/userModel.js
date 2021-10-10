@@ -25,10 +25,13 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
-    userData: {
-      type: Object,
-      required: false,
-      default: {}
+    profilePicture: {
+      type: String,
+      required: false
+    },
+    startBudget: {
+      type: Number,
+      required: false
     }
   },
   {
