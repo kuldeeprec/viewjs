@@ -98,6 +98,7 @@ const updatePortfolio = asyncHandler(async (req, res) => {
 // @route   PUT /api/portfolio/id/delete
 // @access  Private
 const deletePortfolio = asyncHandler(async (req, res) => {
+  await Stock.deleteMany({relatedPortfolio: req.params.id})
   const portfolio = await Portfolio.findOne({createdBy: req.user._id, _id: req.params.id})
   if (portfolio) {
     await portfolio.remove();
