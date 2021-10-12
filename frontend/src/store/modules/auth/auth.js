@@ -62,7 +62,10 @@ const actions = {
         router.push({ name: 'Dashboard' });
       })
       .catch((err) => {
-        
+        events.emit('add_toast', {
+          content: err.response.data.message ? err.response.data.message : 'Something went wrong',
+          type: 'danger',
+        });
       });
   },
 

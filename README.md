@@ -4,7 +4,12 @@
 
 This is a stock trading app I built to keep track of portfolios and stocks to manage. It's created in one of the most popular full stack technologies combination known as MEVN. 
 
+## Features
 
+- Contains token based user auth system. 
+- Each user can perform CRUD on Portfolio.
+- Stocks can be added to a portfolio and can be associated with different stock actions.
+- Profile settings is provided where you can add balance, change profile settings and profile image.
 ## Built With
 
 * [Express](https://expressjs.com/)
