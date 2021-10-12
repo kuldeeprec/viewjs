@@ -1,8 +1,8 @@
-# Express Vue Auth Boilerplate using Vuex
+# AppStocks - A virtual stock trading web application
 
 ## Project Briefing
 
-This is a simple boilerplate to get you started with full stack applications using Express and Vue, MongoDB is used as database and tailwind css is used for UI. Yes, it's created in one of the most popular full stack technologies combination known as MEVN. 
+This is a stock trading app I built to keep track of portfolios and stocks to manage. It's created in one of the most popular full stack technologies combination known as MEVN. 
 
 
 ## Built With
@@ -37,14 +37,30 @@ npm start
 
 ## Project Screenshots
 
-Please find some of the screenshots of the application. Below is the screenshot of the Home page.
+Please find some of the screenshots of the application. Below is the screenshot of the Home Page.
 
-![alt text](./screenshots/dashboard.png)
+![alt text](./screenshots/homepage.png)
 
-Sign up page.
+Please find some of the screenshots of the application. Below is the screenshot of the Add Stock Page.
 
-![alt text](./screenshots/register.png)
+![alt text](./screenshots/add_stock.png)
+
+Response after the stock is added successfully.
+
+![alt text](./screenshots/add_stock_success.png)
 
 Login page.
 
 ![alt text](./screenshots/login.png)
+
+Profile settings page.
+
+![alt text](./screenshots/profile.png)
+
+Portfolio page.
+
+![alt text](./screenshots/portfolio.png)
+
+Stock detail page.
+
+![alt text](./screenshots/stock_detail.png)

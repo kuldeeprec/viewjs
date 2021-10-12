@@ -1,6 +1,6 @@
 
 <template>
-  <nav class="flex" aria-label="Breadcrumb">
+  <nav class="flex bg-gray-200" aria-label="Breadcrumb">
     <ol role="list" class="flex items-center px-3">
       <li>
         <div>
