@@ -32,13 +32,13 @@ export default {
     portfolioObj: {
       type: Object,
       required: false,
-      default: null
+      default: null,
     },
     action: {
       type: String,
       required: false,
-      default: 'create'
-    }
+      default: 'create',
+    },
   },
   data() {
     return {

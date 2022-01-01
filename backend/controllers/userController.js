@@ -105,7 +105,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       lastName: updatedUser.lastName,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
-      token: generateToken(updatedUser._id),
+      profilePicture: user.profilePicture
     })
   } else {
     res.status(404)

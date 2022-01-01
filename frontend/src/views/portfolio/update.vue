@@ -7,22 +7,22 @@
     <div class="mx-auto my-3 md:w-1/2">
       <update-portfolio-form
         v-if="singlePortfolio"
-        @updatePortfolio="updatePortfolioAction"
-        :portfolioObj="singlePortfolio"
+        :portfolio-obj="singlePortfolio"
         action="update"
+        @updatePortfolio="updatePortfolioAction"
       />
     </div>
   </span>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
-import * as portfolioTypes from "../../store/modules/portfolio/portfolio-types";
-import UpdatePortfolioForm from "../../components/portfolio/portfolio-form.vue";
+import { mapActions, mapGetters } from 'vuex';
+import BreadCrumbComponent from '../../components/common/breadcrumbs.vue';
+import * as portfolioTypes from '../../store/modules/portfolio/portfolio-types';
+import UpdatePortfolioForm from '../../components/portfolio/portfolio-form.vue';
 
 export default {
-  name: "UpdatePortfolioPage",
+  name: 'UpdatePortfolioPage',
   components: {
     UpdatePortfolioForm,
     BreadCrumbComponent,
@@ -31,8 +31,8 @@ export default {
     return {
       breadcrumbs: [
         {
-          title: "Portfolio",
-          to: { name: "Portfolio" },
+          title: 'Portfolio',
+          to: { name: 'Portfolio' },
         },
       ],
     };
@@ -44,15 +44,15 @@ export default {
     if (this.singlePortfolio) {
       this.breadcrumbs.push(
         {
-          title: 'Update'
+          title: 'Update',
         },
         {
           title: this.singlePortfolio.name,
           to: {
-            name: "PortfolioUpdate",
+            name: 'PortfolioUpdate',
             params: { id: this.singlePortfolio._id },
           },
-        }
+        },
       );
     }
   },

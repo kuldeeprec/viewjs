@@ -1,4 +1,3 @@
-
 <template>
   <nav class="flex bg-gray-200" aria-label="Breadcrumb">
     <ol role="list" class="flex items-center px-3">
@@ -24,7 +23,7 @@
       <li v-for="(link, index) in links" :key="index" class="flex">
         <div v-if="link.to" class="flex items-center">
           <svg
-            class="flex-shrink-0 w-6 h-full text-gray-200"
+            class="flex-shrink-0 w-6 h-full text-gray-700"
             viewBox="0 0 24 44"
             preserveAspectRatio="none"
             fill="currentColor"
@@ -42,7 +41,7 @@
         </div>
         <div v-else class="flex items-center">
           <svg
-            class="flex-shrink-0 w-6 h-full text-gray-200"
+            class="flex-shrink-0 w-6 h-full text-gray-700"
             viewBox="0 0 24 44"
             preserveAspectRatio="none"
             fill="currentColor"
@@ -61,7 +60,7 @@
 </template>
 <script>
 export default {
-  name: "BreadCrumbComponent",
+  name: 'BreadCrumbComponent',
   props: {
     links: {
       type: Array,

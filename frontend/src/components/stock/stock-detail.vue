@@ -11,9 +11,9 @@
       </div>
       <div class="ml-4 mt-4 flex-shrink-0">
         <button
-          @click.prevent="deleteStock"
           type="button"
           class="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          @click.prevent="deleteStock"
         >
           Delete Stock
         </button>
@@ -78,18 +78,18 @@
 <script>
 
 export default {
-  name: "StockDetailComponent",
+  name: 'StockDetailComponent',
   props: {
     stock: {
       type: Object,
       required: true,
-      default: null
-    }
+      default: null,
+    },
   },
   methods: {
     deleteStock() {
-      this.$emit("deleteStock");
-    }
-  }
+      this.$emit('deleteStock');
+    },
+  },
 };
 </script>

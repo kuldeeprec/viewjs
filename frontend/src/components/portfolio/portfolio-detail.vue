@@ -10,18 +10,17 @@
 <script>
 import StockList from '../stock/stock-list.vue';
 
-
 export default {
-  name: "PortfolioDetailComponent",
+  name: 'PortfolioDetailComponent',
+  components: {
+    StockList,
+  },
   props: {
     portfolio: {
       type: Object,
       required: true,
-      default: null
-    }
+      default: null,
+    },
   },
-  components: {
-    StockList,
-  }
 };
 </script>

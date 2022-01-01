@@ -60,7 +60,7 @@
                 >
                   <router-link :to="{name: 'StockDetail', params: {id: stock._id}}" class="truncate mx-1 bg-indigo-800 px-4 py-2 rounded shadow-md text-white">
                     <span>View</span>
-                  </router-link>                  
+                  </router-link>
                   <router-link :to="{name: 'StockUpdate', params: {id: stock._id}}" class="truncate mx-1 bg-green-400 px-4 py-2 rounded shadow-md text-white">
                     <span>Update</span>
                   </router-link>
@@ -85,12 +85,12 @@
 
 <script>
 export default {
-  name: "StockListComponent",
+  name: 'StockListComponent',
   props: {
     stocks: {
       type: Array,
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
 };
 </script>

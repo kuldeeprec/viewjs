@@ -83,12 +83,12 @@
 </template>
 <script>
 export default {
-  name: "HeroSection",
+  name: 'HeroSection',
   props: {
     message: {
       type: String,
-      required: false
-    }
-  }
+      required: false,
+    },
+  },
 };
 </script>

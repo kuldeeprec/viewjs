@@ -5,7 +5,7 @@ import VueTailwind from 'vue-tailwind/dist/full';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
 import events from './plugins/events';
 import interceptor from './plugins/interceptor';
-import VueMeta from 'vue-meta'
+import VueMeta from 'vue-meta';
 import router from './routes/index';
 import { store } from './store/store';
 
@@ -20,7 +20,7 @@ Vue.use(VueMeta);
 Vue.prototype.$bus = events;
 Vue.prototype.$http = interceptor;
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.prototype.$loading = {
   show: () => {
@@ -40,8 +40,5 @@ Vue.prototype.$toast = {
 new Vue({
   router,
   store,
-  render: h => h(App),
-}).$mount('#app')
-
-
-
+  render: (h) => h(App),
+}).$mount('#app');

@@ -33,16 +33,16 @@
 </template>
 <script>
 export default {
-  name: "UpdateCommentModal",
+  name: 'UpdateCommentModal',
   props: {
     comment: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      commentText: ""
+      commentText: '',
     };
   },
   mounted() {
@@ -50,16 +50,16 @@ export default {
   },
   methods: {
     close() {
-      this.$emit("closeModal");
+      this.$emit('closeModal');
     },
     onConfirm() {
       const payload = {
         id: this.$route.params.id,
         commentId: this.comment._id,
-        text: this.commentText
+        text: this.commentText,
       };
-      this.$emit("onConfirmAction", payload);
-    }
-  }
+      this.$emit('onConfirmAction', payload);
+    },
+  },
 };
 </script>

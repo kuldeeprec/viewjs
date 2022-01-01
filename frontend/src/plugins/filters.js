@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import Vue from 'vue';
 
-
 Vue.filter('dateToHumanShort', (value) => {
   if (value) {
     return dayjs(value).format('MMMM D, YYYY');
@@ -16,5 +15,5 @@ Vue.filter('toUpperCase', (value) => {
 
 Vue.filter('getFullName', (value) => {
   if (!value) return '';
-  return value.firstName + ' ' + value.lastName;
+  return `${value.firstName} ${value.lastName}`;
 });

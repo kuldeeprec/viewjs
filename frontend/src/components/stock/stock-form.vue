@@ -68,18 +68,18 @@ export default {
     stockObj: {
       type: Object,
       required: false,
-      default: null
+      default: null,
     },
     action: {
       type: String,
       required: false,
-      default: 'add'
+      default: 'add',
     },
     portfolios: {
       type: Array,
       required: true,
       default: () => [],
-    }
+    },
   },
   data() {
     return {
@@ -93,7 +93,7 @@ export default {
         duration: '',
         actionPrice: '',
         stockAction: '',
-        stockData: {}
+        stockData: {},
       },
     };
   },

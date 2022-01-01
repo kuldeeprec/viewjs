@@ -68,7 +68,9 @@
                   />
                 </svg>
               </div>
-              <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Stock Comments</p>
+              <p class="ml-16 text-lg leading-6 font-medium text-gray-900">
+                Stock Comments
+              </p>
             </dt>
             <dd class="mt-2 ml-16 text-base text-gray-500">
               You can keep track of your sentiments with the stock at various stages using stock comments.
@@ -97,7 +99,9 @@
                   />
                 </svg>
               </div>
-              <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Stock Actions</p>
+              <p class="ml-16 text-lg leading-6 font-medium text-gray-900">
+                Stock Actions
+              </p>
             </dt>
             <dd class="mt-2 ml-16 text-base text-gray-500">
               Add Stocks to track and manage as time moves
@@ -126,7 +130,9 @@
                   />
                 </svg>
               </div>
-              <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Virtual Trade</p>
+              <p class="ml-16 text-lg leading-6 font-medium text-gray-900">
+                Virtual Trade
+              </p>
             </dt>
             <dd class="mt-2 ml-16 text-base text-gray-500">
               Use virtual money by adding it to your profile, this can be used to then perform virtual trading.
@@ -139,6 +145,6 @@
 </template>
 <script>
 export default {
-  name: "HomeHeroComponent"
+  name: 'HomeHeroComponent',
 };
 </script>

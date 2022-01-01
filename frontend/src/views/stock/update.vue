@@ -5,28 +5,34 @@
       UPDATE STOCK
     </p>
     <div class="mx-auto my-3 md:w-1/2">
-      <update-stock-form v-if="singleStock && allPortfolio" @updateStock="updateStock" action="update" :stockObj="singleStock" :portfolios="allPortfolio" />
+      <update-stock-form v-if="singleStock && allPortfolio" action="update" :stock-obj="singleStock" :portfolios="allPortfolio" @updateStock="updateStock" />
     </div>
   </span>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
+import BreadCrumbComponent from '../../components/common/breadcrumbs.vue';
 import * as stockTypes from '../../store/modules/stock/stock-types';
 import * as portfolioTypes from '../../store/modules/portfolio/portfolio-types';
-import UpdateStockForm from '../../components/stock/stock-form.vue'
+import UpdateStockForm from '../../components/stock/stock-form.vue';
 
 export default {
   name: 'CreatePortfolioPage',
   components: {
     UpdateStockForm,
-    BreadCrumbComponent
+    BreadCrumbComponent,
   },
   data() {
     return {
       breadcrumbs: [],
     };
+  },
+  computed: {
+    ...mapGetters({
+      allPortfolio: portfolioTypes.GET_ALL_PORTFOLIOS,
+      singleStock: stockTypes.GET_SINGLE_STOCK,
+    }),
   },
   mounted() {
     this.getSingleStockAction(this.$route.params.id);
@@ -41,29 +47,24 @@ export default {
           to: { name: 'StockList' },
         },
         {
-          title: 'Update'
+          title: 'Update',
         },
         {
           title: this.singleStock.name,
           to: {
-            name: "StockUpdate",
+            name: 'StockUpdate',
+            // eslint-disable-next-line no-underscore-dangle
             params: { id: this.singleStock._id },
           },
-        }
+        },
       );
     }
-  },
-  computed: {
-    ...mapGetters({
-      allPortfolio: portfolioTypes.GET_ALL_PORTFOLIOS,
-      singleStock: stockTypes.GET_SINGLE_STOCK,
-    }),
   },
   methods: {
     ...mapActions({
       updateStock: stockTypes.UPDATE_STOCK_ACTION,
       getAllPortfolio: portfolioTypes.GET_ALL_PORTFOLIOS_ACTION,
-      getSingleStockAction: stockTypes.GET_SINGLE_STOCK_ACTION
+      getSingleStockAction: stockTypes.GET_SINGLE_STOCK_ACTION,
     }),
   },
 };

@@ -37,8 +37,8 @@ export default {
   methods: {
     submitForm() {
       this.$emit('changePassword', {
-        password: this.password
-      })
+        password: this.password,
+      });
     },
   },
 };

@@ -3,8 +3,8 @@
     <p class="text-center text-lg my-3 font-semibold">
       Comments
     </p>
-    <t-textarea rows="5" columns="10" v-model="commentText" />
-    <t-button class="mt-4" @click.prevent="addComment" :disabled="commentText.length == 0">
+    <t-textarea v-model="commentText" rows="5" columns="10" />
+    <t-button class="mt-4" :disabled="commentText.length == 0" @click.prevent="addComment">
       Add Comment
     </t-button>
   </div>
@@ -12,19 +12,19 @@
 
 <script>
 export default {
-  name: "Comment",
+  name: 'Comment',
   data() {
     return {
-      commentText: "",
+      commentText: '',
     };
   },
   methods: {
     addComment() {
-      this.$emit("addComment", this.commentText);
+      this.$emit('addComment', this.commentText);
     },
     deleteComment() {
-      this.$emit("deleteComment");
-    }
-  }
+      this.$emit('deleteComment');
+    },
+  },
 };
 </script>
