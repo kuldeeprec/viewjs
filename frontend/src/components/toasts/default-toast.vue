@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="messages && messages.length > 0" class="fixed inset-x-0 top-0 flex z-10 items-center justify-center justify-items-center px-4 py-6 space-y-2 flex-col">
+    <div v-if="messages && messages.length > 0" class="fixed inset-x-0 top-0 flex z-50 items-center justify-center justify-items-center px-4 py-6 space-y-2 flex-col">
       <div v-for="(message, index) in messages" :key="index">
         <div v-if="message.type === 'success'" class="rounded-md bg-green-50 p-4">
           <div class="flex">

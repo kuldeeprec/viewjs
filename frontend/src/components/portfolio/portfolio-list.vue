@@ -60,7 +60,7 @@
                 >
                   <router-link :to="{name: 'PortfolioDetail', params: {id: portfolio._id}}" class="truncate mx-1 bg-indigo-800 px-4 py-2 rounded shadow-md text-white">
                     <span>View</span>
-                  </router-link>                  
+                  </router-link>
                   <router-link :to="{name: 'PortfolioUpdate', params: {id: portfolio._id}}" class="truncate mx-1 bg-green-400 px-4 py-2 rounded shadow-md text-white">
                     <span>Update</span>
                   </router-link>
@@ -87,17 +87,17 @@
 import dayjs from 'dayjs';
 
 export default {
-  name: "PortfolioListComponent",
+  name: 'PortfolioListComponent',
   filters: {
     filterDate(value) {
       return dayjs(value).format('DD/MM/YYYY');
-    }
+    },
   },
   props: {
     portfolios: {
       type: Array,
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
 };
 </script>

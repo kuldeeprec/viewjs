@@ -8,8 +8,8 @@
       <stock-detail
         v-if="singleStock"
         :stock="singleStock"
-        @deleteStock="openDeleteModal"
         class="mx-auto w-3/4 px-2 py-4"
+        @deleteStock="openDeleteModal"
       />
       <comment-container
         class="mx-auto w-3/4 px-2 py-4"
@@ -75,17 +75,17 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
-import StockDetail from "../../components/stock/stock-detail.vue";
-import ConfirmModal from "../../components/modals/confirm-modal.vue";
-import UpdateCommentModal from "../../components/modals/update-comment.vue";
-import * as stockTypes from "../../store/modules/stock/stock-types";
-import CommentContainer from "../../components/stock/comment.vue";
-import IconComponent from "../../components/common/svg-icons.vue";
+import { mapActions, mapGetters } from 'vuex';
+import BreadCrumbComponent from '../../components/common/breadcrumbs.vue';
+import StockDetail from '../../components/stock/stock-detail.vue';
+import ConfirmModal from '../../components/modals/confirm-modal.vue';
+import UpdateCommentModal from '../../components/modals/update-comment.vue';
+import * as stockTypes from '../../store/modules/stock/stock-types';
+import CommentContainer from '../../components/stock/comment.vue';
+import IconComponent from '../../components/common/svg-icons.vue';
 
 export default {
-  name: "StockDetailPage",
+  name: 'StockDetailPage',
   components: {
     StockDetail,
     BreadCrumbComponent,
@@ -110,16 +110,16 @@ export default {
       this.breadcrumbs = [];
       this.breadcrumbs.push(
         {
-          title: "Stocks",
-          to: { name: "StockList" },
+          title: 'Stocks',
+          to: { name: 'StockList' },
         },
         {
-          title: "Details",
+          title: 'Details',
         },
         {
           title: this.singleStock.name,
-          to: { name: "StockDetail", params: { id: this.singleStock._id } },
-        }
+          to: { name: 'StockDetail', params: { id: this.singleStock._id } },
+        },
       );
     }
   },
@@ -129,7 +129,7 @@ export default {
     }),
     deleteMessage() {
       if (!this.singleStock) {
-        return "";
+        return '';
       }
       return `Are you sure you want to delete stock named " ${this.singleStock.name} "?`;
     },
@@ -170,7 +170,7 @@ export default {
     openUpdateCommentModal(commentId) {
       this.isEditModalOpened = true;
       this.selectedComment = this.singleStock.comments.find(
-        (item) => item._id === commentId
+        (item) => item._id === commentId,
       );
     },
     closeUpdateCommentModal(commentId) {

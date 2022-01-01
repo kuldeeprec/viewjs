@@ -7,7 +7,7 @@
           <p class="text-xl p-3 text-center text-blue-700">
             CHANGE SETTINGS
           </p>
-          <change-profile-settings-form :profileData="profileData" @updateSetting="updateProfileData" />
+          <change-profile-settings-form :profile-data="profileData" @updateSetting="updateProfileData" />
         </div>
         <div>
           <p class="text-xl p-3 text-center text-blue-700">
@@ -30,20 +30,20 @@
   </span>
 </template>
 <script>
-import { mapGetters, mapActions } from "vuex";
-import * as authTypes from "../../store/modules/auth/auth-types";
-import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
-import ChangePasswordForm from "../../components/profile/change-password.vue";
-import ChangeProfileSettingsForm from "../../components/profile/account-settings.vue";
-import ChangeSettingsForm from "../../components/profile/general-settings.vue";
+import { mapGetters, mapActions } from 'vuex';
+import * as authTypes from '../../store/modules/auth/auth-types';
+import BreadCrumbComponent from '../../components/common/breadcrumbs.vue';
+import ChangePasswordForm from '../../components/profile/change-password.vue';
+import ChangeProfileSettingsForm from '../../components/profile/account-settings.vue';
+import ChangeSettingsForm from '../../components/profile/general-settings.vue';
 
 export default {
-  name: "About",
+  name: 'About',
   components: {
     ChangePasswordForm,
     ChangeProfileSettingsForm,
     ChangeSettingsForm,
-    BreadCrumbComponent
+    BreadCrumbComponent,
   },
   data() {
     return {
@@ -53,25 +53,25 @@ export default {
           to: { name: 'Settings' },
         },
       ],
-    }
+    };
   },
   computed: {
     ...mapGetters({
-      profileData: authTypes.GET_PROFILE_DATA
-    })
+      profileData: authTypes.GET_PROFILE_DATA,
+    }),
   },
   methods: {
     ...mapActions({
       changePasswordAction: authTypes.UPDATE_USER_PASSWORD,
       updateProfileDataAction: authTypes.UPDATE_PROFILE_SETTINGS,
-      updateGeneralSettingsAction: authTypes.UPDATE_GENERAL_SETTINGS
+      updateGeneralSettingsAction: authTypes.UPDATE_GENERAL_SETTINGS,
     }),
     updateProfileData(payload) {
-      this.updateProfileDataAction(payload)
+      this.updateProfileDataAction(payload);
     },
     updateSettings(payload) {
-      this.updateGeneralSettingsAction(payload)
-    }
-  }
+      this.updateGeneralSettingsAction(payload);
+    },
+  },
 };
 </script>

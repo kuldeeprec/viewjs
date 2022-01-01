@@ -6,14 +6,14 @@
   </div>
 </template>
 <script>
-import HeaderComponent from "../components/common/header.vue";
-import FooterComponent from "../components/common/footer.vue";
+import HeaderComponent from '../components/common/header.vue';
+import FooterComponent from '../components/common/footer.vue';
 
 export default {
-  name: "DashboardLayout",
+  name: 'DashboardLayout',
   components: {
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   },
 };
 </script>

@@ -9,10 +9,10 @@
         {{ singlePortfolio.name }}
       </p>
       <div class="flex justify-center items-center">
-        <t-button @click.prevent="openDeleteModal" class="my-3 mx-1">
+        <t-button class="my-3 mx-1" @click.prevent="openDeleteModal">
           Delete Portfolio
         </t-button>
-        <t-button @click.prevent="gotToAddStock" class="my-3 mx-1">
+        <t-button class="my-3 mx-1" @click.prevent="gotToAddStock">
           Add Stock
         </t-button>
       </div>
@@ -33,14 +33,14 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
-import PortfolioDetail from "../../components/portfolio/portfolio-detail.vue";
-import ConfirmModal from "../../components/modals/confirm-modal.vue";
-import * as portfolioTypes from "../../store/modules/portfolio/portfolio-types";
+import { mapActions, mapGetters } from 'vuex';
+import BreadCrumbComponent from '../../components/common/breadcrumbs.vue';
+import PortfolioDetail from '../../components/portfolio/portfolio-detail.vue';
+import ConfirmModal from '../../components/modals/confirm-modal.vue';
+import * as portfolioTypes from '../../store/modules/portfolio/portfolio-types';
 
 export default {
-  name: "PortfolioDetailPage",
+  name: 'PortfolioDetailPage',
   components: {
     PortfolioDetail,
     ConfirmModal,
@@ -51,8 +51,8 @@ export default {
       isDeleteModalOpened: false,
       breadcrumbs: [
         {
-          title: "Portfolio",
-          to: { name: "Portfolio" },
+          title: 'Portfolio',
+          to: { name: 'Portfolio' },
         },
       ],
     };
@@ -64,15 +64,15 @@ export default {
     if (this.singlePortfolio) {
       this.breadcrumbs.push(
         {
-          title: 'Details'
+          title: 'Details',
         },
         {
           title: this.singlePortfolio.name,
           to: {
-            name: "PortfolioDetail",
+            name: 'PortfolioDetail',
             params: { id: this.singlePortfolio._id },
           },
-        }
+        },
       );
     }
   },
@@ -82,7 +82,7 @@ export default {
     }),
     deleteMessage() {
       if (!this.singlePortfolio) {
-        return "";
+        return '';
       }
       return `Are you sure you want to delete portfolio named ${this.singlePortfolio.name}?`;
     },
@@ -103,7 +103,7 @@ export default {
     },
     gotToAddStock() {
       this.$router.push({
-        name: "AddStock",
+        name: 'AddStock',
         query: { portfolioId: this.singlePortfolio.name },
       });
     },

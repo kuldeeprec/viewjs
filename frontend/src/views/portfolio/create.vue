@@ -11,16 +11,16 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
-import * as portfolioTypes from "../../store/modules/portfolio/portfolio-types";
-import CreatePortfolioForm from "../../components/portfolio/portfolio-form.vue";
+import { mapActions } from 'vuex';
+import BreadCrumbComponent from '../../components/common/breadcrumbs.vue';
+import * as portfolioTypes from '../../store/modules/portfolio/portfolio-types';
+import CreatePortfolioForm from '../../components/portfolio/portfolio-form.vue';
 
 export default {
-  name: "CreatePortfolioPage",
+  name: 'CreatePortfolioPage',
   components: {
     CreatePortfolioForm,
-    BreadCrumbComponent
+    BreadCrumbComponent,
   },
   data() {
     return {
@@ -34,15 +34,15 @@ export default {
           to: { name: 'CreatePortfolio' },
         },
       ],
-    }
+    };
   },
   methods: {
     ...mapActions({
-      createPortfolio: portfolioTypes.CREATE_PORTFOLIO_ACTION
+      createPortfolio: portfolioTypes.CREATE_PORTFOLIO_ACTION,
     }),
     navigateBack() {
       this.$router.go(-1);
-    }
-  }
+    },
+  },
 };
 </script>

@@ -17,24 +17,24 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import BreadCrumbComponent from "../../components/common/breadcrumbs.vue";
-import PortfolioList from "../../components/portfolio/portfolio-list.vue";
-import IconComponent from "../../components/common/svg-icons.vue";
-import * as portfolioTypes from "../../store/modules/portfolio/portfolio-types";
+import { mapActions, mapGetters } from 'vuex';
+import BreadCrumbComponent from '../../components/common/breadcrumbs.vue';
+import PortfolioList from '../../components/portfolio/portfolio-list.vue';
+import IconComponent from '../../components/common/svg-icons.vue';
+import * as portfolioTypes from '../../store/modules/portfolio/portfolio-types';
 
 export default {
-  name: "PortfolioListPage",
+  name: 'PortfolioListPage',
   components: {
     PortfolioList,
     IconComponent,
-    BreadCrumbComponent
+    BreadCrumbComponent,
   },
   metaInfo: {
-    title: "Stock List",
+    title: 'Stock List',
     meta: [
-     { name: 'description', content: "Description of all stocks which I have" }
-    ]
+      { name: 'description', content: 'Description of all stocks which I have' },
+    ],
   },
   data() {
     return {
@@ -51,16 +51,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      allPortfolios: portfolioTypes.GET_ALL_PORTFOLIOS
-    })
+      allPortfolios: portfolioTypes.GET_ALL_PORTFOLIOS,
+    }),
   },
   methods: {
     ...mapActions({
-      allPortfoliosAction: portfolioTypes.GET_ALL_PORTFOLIOS_ACTION
+      allPortfoliosAction: portfolioTypes.GET_ALL_PORTFOLIOS_ACTION,
     }),
     navigateToUrl() {
-      this.$router.push({ name: "CreatePortfolio" });
-    }
-  }
+      this.$router.push({ name: 'CreatePortfolio' });
+    },
+  },
 };
 </script>

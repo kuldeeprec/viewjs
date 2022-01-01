@@ -45,7 +45,7 @@ httpClient.interceptors.response.use((response) => {
         content: 'You are not authorized to access this route, try logging in',
         type: 'danger',
       });
-      router.push({ name: 'Login' })
+      router.push({ name: 'Login' });
     } else {
       events.emit('add_toast', {
         content: getErrorMessage(error.response),

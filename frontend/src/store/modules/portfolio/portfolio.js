@@ -9,12 +9,8 @@ const state = {
 };
 
 const getters = {
-  [types.GET_SINGLE_PORTFOLIO]: state => {
-    return state.portfolio;
-  },
-  [types.GET_ALL_PORTFOLIOS]: state => {
-    return state.allPortfolios;
-  },
+  [types.GET_SINGLE_PORTFOLIO]: (state) => state.portfolio,
+  [types.GET_ALL_PORTFOLIOS]: (state) => state.allPortfolios,
 };
 
 const mutations = {
@@ -27,9 +23,9 @@ const mutations = {
 };
 
 const actions = {
-  // Get a single portfolio  
-  [types.GET_SINGLE_PORTFOLIO_ACTION]: ({commit}, id) => {
-    let url = `portfolio/${id}`;
+  // Get a single portfolio
+  [types.GET_SINGLE_PORTFOLIO_ACTION]: ({ commit }, id) => {
+    const url = `portfolio/${id}`;
     interceptor.get(url)
       .then((response) => {
         commit(types.SET_SINGLE_PORTFOLIO, response);
@@ -40,8 +36,8 @@ const actions = {
   },
 
   // Get all portfolios
-  [types.GET_ALL_PORTFOLIOS_ACTION]: ({commit}) => {
-    let url = 'portfolio';
+  [types.GET_ALL_PORTFOLIOS_ACTION]: ({ commit }) => {
+    const url = 'portfolio';
     interceptor.get(url)
       .then((response) => {
         commit(types.SET_ALL_PORTFOLIOS, response.data);
@@ -52,8 +48,8 @@ const actions = {
   },
 
   // Create a portfolio action
-  [types.CREATE_PORTFOLIO_ACTION]: ({commit}, payload) => {
-    let url = 'portfolio';
+  [types.CREATE_PORTFOLIO_ACTION]: ({ commit }, payload) => {
+    const url = 'portfolio';
     interceptor.post(url, payload)
       .then((response) => {
         if (response) {
@@ -70,18 +66,18 @@ const actions = {
   },
 
   // Update a portfolio action
-  [types.UPDATE_PORTFOLIO_ACTION]: ({commit}, payload) => {
-    let url = `portfolio/update/${payload.id}`;
+  [types.UPDATE_PORTFOLIO_ACTION]: ({ commit }, payload) => {
+    const url = `portfolio/update/${payload.id}`;
     interceptor.put(url, payload.data)
       .then((response) => {
-       if (response) {
-        commit(types.SET_SINGLE_PORTFOLIO, response);
-        events.emit('add_toast', {
-          content: 'Portfolio updated successfully',
-          type: 'success',
-        });
-        router.push({ name: 'Portfolio' });
-       }
+        if (response) {
+          commit(types.SET_SINGLE_PORTFOLIO, response);
+          events.emit('add_toast', {
+            content: 'Portfolio updated successfully',
+            type: 'success',
+          });
+          router.push({ name: 'Portfolio' });
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -89,8 +85,8 @@ const actions = {
   },
 
   // Delete a portfolio action
-  [types.DELETE_PORTFOLIO_ACTION]: ({commit}, id) => {
-    let url = `portfolio/delete/${id}`;
+  [types.DELETE_PORTFOLIO_ACTION]: ({ commit }, id) => {
+    const url = `portfolio/delete/${id}`;
     interceptor.delete(url)
       .then((response) => {
         if (response) {
@@ -111,5 +107,5 @@ export default {
   state,
   mutations,
   actions,
-  getters
-}
+  getters,
+};

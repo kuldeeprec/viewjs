@@ -7,7 +7,7 @@
             class="h-8 w-auto sm:h-10"
             src="https://raw.githubusercontent.com/aleksandryackovlev/openapi-mock-express-middleware/master/assets/express-logo.png"
             alt=""
-          />
+          >
         </a>
         <router-link
           :to="{ name: 'Dashboard' }"
@@ -65,27 +65,27 @@
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
-import * as authTypes from "../../store/modules/auth/auth-types";
+import { mapActions } from 'vuex';
+import * as authTypes from '../../store/modules/auth/auth-types';
 
 export default {
-  name: "HeaderComponent",
+  name: 'HeaderComponent',
   computed: {
     checkUserLoggedIn() {
-      const storedToken = localStorage.getItem("Token");
+      const storedToken = localStorage.getItem('Token');
       if (storedToken) {
         return true;
       }
       return false;
-    }
+    },
   },
   methods: {
     ...mapActions({
-      getLogoutAction: authTypes.LOG_OUT
+      getLogoutAction: authTypes.LOG_OUT,
     }),
     async logOutFunction() {
       this.getLogoutAction();
-    }
-  }
+    },
+  },
 };
 </script>

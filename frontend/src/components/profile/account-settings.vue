@@ -36,14 +36,14 @@ export default {
   props: {
     profileData: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       firstName: '',
       lastName: '',
-      email: ''
+      email: '',
     };
   },
   mounted() {
@@ -56,8 +56,8 @@ export default {
       this.$emit('updateSetting', {
         firstName: this.firstName,
         lastName: this.lastName,
-        email: this.email
-      })
+        email: this.email,
+      });
     },
   },
 };

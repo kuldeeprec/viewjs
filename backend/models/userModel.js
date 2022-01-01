@@ -31,7 +31,8 @@ const userSchema = mongoose.Schema(
     },
     startBudget: {
       type: Number,
-      required: false
+      required: false,
+      default: 100000
     }
   },
   {
