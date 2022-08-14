@@ -40,6 +40,32 @@ npm run build
 npm start
 ```
 
+The entire app can be served through Nginx after build using proxy pass. The following sample code illustrates this and assumes the back-end app is running on port 5000 in production mode.
+
+```
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+    worker_connections 768;
+    # multi_accept on;
+}
+
+http {
+    server {
+    listen 80;
+    listen [::]:80;
+
+    location / {
+        proxy_pass http://localhost:5000/;
+    }
+  }
+}
+
+```
+
 ## Project Screenshots
 
 Please find some of the screenshots of the application. Below is the screenshot of the Home Page.
