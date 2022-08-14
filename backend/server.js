@@ -27,6 +27,8 @@ app.use('/api/portfolio', portfolioRoutes)
 app.use('/api/stock', stockRoutes)
 app.use('/api/upload', uploadRoutes)
 
+console.log('Env variables ', process.env.MONGO_URI)
+
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
